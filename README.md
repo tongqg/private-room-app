@@ -1,96 +1,116 @@
 # Private Room Chat Application
 
-## Overview
-A web-based chat application that allows users to create private chat rooms and invite others through QR codes.
+A web-based chat application that enables users to create private chat rooms and invite others through QR codes. This application provides real-time chat functionality with room administration capabilities.
+
+## Screenshot
+
+![Private Room Chat Application Screenshot](docs/screenshot.png)
 
 ## Features
+
 - Create private chat rooms
 - Generate unique QR codes for room access
 - Real-time chat functionality
 - Room administration capabilities
 - Simple user registration with display names
 
-## Technical Architecture
+## Tech Stack
 
 ### Frontend
-- React.js for UI components
-- WebSocket for real-time communication
-- QR code generation library (qrcode.react)
-- Styled-components for styling
+- React.js
+- WebSocket
+- qrcode.react
+- Styled-components
 
 ### Backend
-- Node.js with Express
-- Socket.IO for WebSocket handling
-- SQlite for data storage
-- JWT for room authentication
+- Node.js
+- Express
+- Socket.IO
+- SQLite
+- JWT
 
-## Data Models
+## Prerequisites
 
-### Room
-```typescript
-{
-  id: string;
-  name: string;
-  adminId: string;
-  createdAt: Date;
-  active: boolean;
-  accessCode: string;
-}
+Before you begin, ensure you have the following installed:
+- Node.js (v14 or higher)
+- npm (v6 or higher)
+
+## Installation
+
+1. Clone the repository:
+```bash
+git clone [repository-url]
+cd private-room-app
 ```
 
-### User
-```typescript
-{
-  id: string;
-  displayName: string;
-  roomId: string;
-  isAdmin: boolean;
-  joinedAt: Date;
-}
+2. Install server dependencies:
+```bash
+npm install
 ```
 
-### Message
-```typescript
-{
-  id: string;
-  roomId: string;
-  userId: string;
-  content: string;
-  timestamp: Date;
-}
+3. Install client dependencies:
+```bash
+cd client
+npm install
 ```
 
-## API Endpoints
+## Running the Application
 
-### Room Management
-- POST /api/rooms - Create new room
-- GET /api/rooms/:roomId - Get room details
-- POST /api/rooms/:roomId/join - Join room with access code
+1. Start the backend server:
+```bash
+# From the root directory
+node server.js
+```
 
-### Chat Operations
-- WebSocket events for:
-  - message.new
-  - user.join
-  - user.leave
-  - room.close
+2. Start the frontend development server:
+```bash
+# From the client directory
+cd client
+npm start
+```
 
-## User Flow
-1. Admin creates a new room
-2. System generates unique QR code and access URL
-3. Others scan QR code to access room
-4. Users enter display name to join
-5. Real-time chat begins
-6. Admin can moderate and close room
+The application should now be running at:
+- Frontend: http://localhost:8080
+- Backend: http://localhost:3000
 
-## Security Considerations
+## Usage
+
+### Creating a Room
+1. Navigate to the homepage
+2. Click on "Create Room"
+3. Enter a room name
+4. You'll receive a QR code and access URL for sharing
+
+### Joining a Room
+1. Scan the QR code or use the access URL
+2. Enter your display name
+3. Join the chat room
+
+### Room Administration
+As a room admin, you can:
+- Monitor user activity
+- Remove users
+- Close the room
+
+## Security Features
+
 - Rate limiting for room creation
 - Access code encryption
 - Message sanitization
 - Room expiry after inactivity
 
 ## Future Enhancements
+
 - File sharing
 - End-to-end encryption
 - Room templates
 - User authentication
 - Message history
+
+## License
+
+[Add your license here]
+
+## Contributing
+
+[Add contribution guidelines here]
